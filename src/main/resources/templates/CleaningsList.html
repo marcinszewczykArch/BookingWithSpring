@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Cleaning schedule</title>
+</head>
+<body>
+<h1>Cleaning schedule:</h1>
+
+        <div th:each="date: ${dates}">
+            <hr>
+            <h2 th:text="${date}"></h2>
+            <hr>
+            <div th:each="cleaner: ${cleaners}">
+                    <div th:each="cleaning: ${cleaningsList}">
+                        <h3 th:if="${cleaning.cleaningPerson == cleaner && cleaning.cleaningDate == date}" th:text="${cleaning.cleaningPerson.people.firstName}"></h3>
+                        <p th:if="${cleaning.cleaningPerson == cleaner && cleaning.cleaningDate == date}" th:text="${        cleaning.reservation.apartment.apartmentName}"></p>
+                    </div>
+            </div>
+            </div>
+        </div>
+
+<a th:href="@{/}">Homepage</a>
+</body>
+</html>

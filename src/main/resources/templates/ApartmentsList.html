@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <header id="head" class="alt" th:include="STYLESHEETS :: stylesheet" />
+    <title>Apartamenty</title>
+</head>
+<body>
+    <header id="header" class="alt" th:include="MENU :: title-menu"></header>
+
+
+
+    <div class="container" th:each="apartment: ${apartmentsList}">
+        <article class="apartment">
+            <table width=100% >
+
+                <tr>
+                    <td>
+                        <a th:href="@{/products/list/{name}(name=${apartment.apartmentName})}">
+                            <h1 th:text="${apartment.apartmentName}"></h1></a>
+                            <span th:text="${apartment.apartmentName}"></span>
+                        </a>
+                    </td>
+                    <td rowspan="2" width=15% class="apartment-image">
+                        <img th:src="${apartment.image}"
+                             width=100% max-height="10px" alt="nie ma zdjęcia">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span th:text="${apartment.airbnbLink}"></span><br>
+                        <span th:text="${apartment.address}"></span>
+                    </td>
+                </tr>
+
+            </table>
+        </article>
+    </div>
+</body>
+</html>

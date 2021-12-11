@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"></meta>
+  <title>List of all cities</title>
+</head>
+<body>
+<h1>All Reservations:</h1>
+<table border="1">
+  <tr>
+    <th>id</th>
+    <th>reservationDate</th>
+    <th>reservationCode</th>
+    <th>apartment</th>
+    <th>checkIn</th>
+    <th>checkOut</th>
+    <th>stayDuration</th>
+    <th>adults</th>
+    <th>children</th>
+    <th>smallChildren</th>
+    <th>guestName</th>
+    <th>guestCountry</th>
+    <th>moneyTransfer</th>
+  </tr>
+  <tr th:each="reservation: ${reservationsList}">
+    <td th:text="${reservation.id}"></td>
+    <td th:text="${reservation.reservationDate}"></td>
+    <td th:text="${reservation.reservationCode}"></td>
+    <td th:text="${reservation.apartment.apartmentName}"></td>
+    <td th:text="${reservation.checkIn}"></td>
+    <td th:text="${reservation.checkOut}"></td>
+    <td th:text="${reservation.stayDuration}"></td>
+    <td th:text="${reservation.adults}"></td>
+    <td th:text="${reservation.children}"></td>
+    <td th:text="${reservation.smallChildren}"></td>
+    <td th:text="${reservation.guestName}"></td>
+    <td th:text="${reservation.guestCountry}"></td>
+    <td th:text="${reservation.moneyTransfer}"></td>
+  </tr>
+</table>
+<a th:href="@{/}">Homepage</a>
+</body>
+</html>

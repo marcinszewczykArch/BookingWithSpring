@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Reservation manager</title>
+</head>
+<body>
+<p th:text="${message}">asdf</p>
+<h1>Add reservation:</h1>
+<form th:action="@{/reservations}" th:object="${reservationModel}" method="post">
+    <p><input type="text" th:field="*{guestName}" placeholder="guestName" /></p>
+    <p><input type="number" th:field="*{adults}" placeholder="adults" /></p>
+    <p><input type="submit" value="Add Reservation" /></p>
+</form>
+
+<a th:href="@{/reservations}">List all reservations</a>
+</body>
+</html>
