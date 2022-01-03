@@ -64,19 +64,21 @@ public class UiApplication {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
+                    .csrf().disable()
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/api/apartments").permitAll()
-                    .antMatchers("/api/reservations").hasAnyRole("USER", "ADMIN")
-                    .antMatchers("/api/people", "/api/users").hasAnyRole("ADMIN")
-                    .anyRequest().authenticated()
+                    .antMatchers("/api/**").permitAll()
+//                    .antMatchers("/api/reservations").hasAnyRole("USER", "ADMIN")
+//                    .antMatchers("/api/people", "/api/users").hasAnyRole("ADMIN")
+//                    .anyRequest().authenticated()
                     .and()
                     .formLogin().permitAll()
                     .and()
                     .logout().permitAll();
 
         }
+
     }
 
 }

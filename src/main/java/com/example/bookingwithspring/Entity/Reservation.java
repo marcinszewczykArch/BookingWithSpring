@@ -19,10 +19,10 @@ public class Reservation implements Serializable {
     Apartment apartment;
     LocalDate checkIn;
     LocalDate checkOut;
-    int stayDuration;
-    int adults;
-    int children;
-    int smallChildren;
+    Integer stayDuration;
+    Integer adults;
+    Integer children;
+    Integer smallChildren;
     String guestName;
     String guestCountry;
     LocalDate reservationDate;
