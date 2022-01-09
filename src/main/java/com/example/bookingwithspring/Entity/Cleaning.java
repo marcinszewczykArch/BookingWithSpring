@@ -13,8 +13,6 @@ public class Cleaning {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    Reservation reservation;
-    @OneToOne
     CleaningPerson cleaningPerson;
     int extraBedding;
     LocalDate cleaningDate;
@@ -23,13 +21,11 @@ public class Cleaning {
     public Cleaning() {
     }
 
-    public Cleaning(Reservation reservation, LocalDate cleaningDate) {
-        this.reservation = reservation;
+    public Cleaning(LocalDate cleaningDate) {
         this.cleaningDate = cleaningDate;
     }
 
-    public Cleaning(Reservation reservation, CleaningPerson cleaningPerson, LocalDate cleaningDate) {
-        this.reservation = reservation;
+    public Cleaning(CleaningPerson cleaningPerson, LocalDate cleaningDate) {
         this.cleaningPerson = cleaningPerson;
         this.cleaningDate = cleaningDate;
     }

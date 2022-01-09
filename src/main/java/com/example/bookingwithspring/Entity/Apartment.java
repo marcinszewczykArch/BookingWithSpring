@@ -18,8 +18,8 @@ public class Apartment {
     int guestsNumber;
     String address;
     int size;
-    @OneToMany
-    private List<Reservation> reservations;
+//    @OneToMany
+//    private List<Reservation> reservations;
     @ManyToOne
     Owner owner;
     String image;

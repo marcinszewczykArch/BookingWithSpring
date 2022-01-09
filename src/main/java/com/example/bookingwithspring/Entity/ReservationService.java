@@ -56,14 +56,6 @@ public class ReservationService {
                 .findFirst();
 
         if (!reservationToDelete.isEmpty()) {
-
-            //delete all cleanings related to the reservation
-            cleaningRepo.findAll()
-                    .stream()
-                    .filter(cleaning -> cleaning.getReservation().getId() == id)
-                    .forEach(cleaning -> cleaningRepo.delete(cleaning));
-
-            //delete reservation
             reservationRepo.deleteById(id);
         }
 

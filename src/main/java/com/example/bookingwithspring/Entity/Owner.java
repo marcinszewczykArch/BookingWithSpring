@@ -14,8 +14,7 @@ public class Owner {
     private Long id;
     @OneToOne
     People people;
-    @OneToMany
-    private List<Apartment> apartments;
+
 
 
     public Owner(People people) {
@@ -24,7 +23,6 @@ public class Owner {
 
     public Owner(People people, List<Apartment> apartments) {
         this.people = people;
-        this.apartments = apartments;
     }
 
     public Owner() {

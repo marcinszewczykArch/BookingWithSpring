@@ -1,17 +1,14 @@
 package com.example.bookingwithspring;
 
 import com.example.bookingwithspring.Entity.*;
-import com.example.bookingwithspring.Enum.UserRole;
 import com.example.bookingwithspring.Repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class Start {
@@ -185,4 +182,36 @@ public class Start {
 //        cleaningRepo.save(cleaning3);
 //        cleaningRepo.save(cleaning4);
 //    }
+
+
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void updateReservationsInDB() {
+
+        CsvImport csvImport = new CsvImport(apartmentRepo);
+
+        try {
+            while (true) {
+                List<Reservation> reservationsFromAirbnb = csvImport.importReservations();
+                List<Reservation> reservationsFromDB = reservationRepo.findAll();
+
+                for (Reservation reservationFromAirbnb : reservationsFromAirbnb) {
+                    boolean addReservationFromAirbnbToDB = true;
+
+                    for (Reservation reservationFromDB : reservationsFromDB) {
+                        if (reservationFromDB.getReservationCode().equals(reservationFromAirbnb.getReservationCode())) {
+                            addReservationFromAirbnbToDB = false;
+                        }
+                    }
+                    if (addReservationFromAirbnbToDB) {
+                        reservationRepo.save(reservationFromAirbnb);
+                    }
+                }
+                TimeUnit.MINUTES.sleep(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
