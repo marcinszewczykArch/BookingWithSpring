@@ -83,4 +83,9 @@ public class ReservationControllerRest {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping(path = "/refresh")
+    public boolean refreshReservationsImport() {
+        return reservationService.updateReservationsInDB();
+    }
+
 }

@@ -6,11 +6,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS task_manager;
 CREATE TABLE task_manager
 (
-    id bigint not null primary key,
-    task varchar(256),
-    frequencyMinutes int,
-    lastExecution date,
-    nextExecution date
+    `id` bigint NOT NULL,
+    `task` varchar(256) DEFAULT NULL,
+    `frequency_Minutes` int DEFAULT NULL,
+    `last_Execution` datetime DEFAULT NULL,
+    `next_Execution` datetime DEFAULT NULL,
+    `duration_Milisec` bigint DEFAULT NULL,
+    PRIMARY KEY (`id`)
 );
 
 --
@@ -48,7 +50,7 @@ CREATE TABLE `cleaning` (
 DROP TABLE IF EXISTS cleaning_person;
 CREATE TABLE cleaning_person (
     `id` bigint NOT NULL AUTO_INCREMENT,
-    `is_availabe` bit(1) NOT NULL,
+    `is_availabe` bit(1) DEFAULT 1,
     `work_end` date DEFAULT NULL,
     `work_start` date DEFAULT NULL,
     `people_id` bigint DEFAULT NULL,
