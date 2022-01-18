@@ -78,6 +78,18 @@
                     <target>16</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <appName>backvisitting</appName>
+                    <processTypes>
+<!--                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>-->
+                        <web>java -jar -Dserver.port=$PORT target/${project.build.finalName}.jar</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
