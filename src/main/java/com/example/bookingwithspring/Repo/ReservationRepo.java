@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public interface ReservationRepo extends JpaRepository<Reservation, Long> {
@@ -35,51 +36,51 @@ public interface ReservationRepo extends JpaRepository<Reservation, Long> {
         if (apartmentId != null) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getApartment().getId().equals(apartmentId))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (checkIn != null && !checkIn.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getCheckIn().isEqual(LocalDate.parse(checkIn, DateTimeFormatter.ISO_DATE)))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (checkOut != null && !checkOut.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getCheckOut().isEqual(LocalDate.parse(checkOut, DateTimeFormatter.ISO_DATE)))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (guestName != null && !guestName.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getGuestName() != null)
                     .filter(reservation -> reservation.getGuestName().equalsIgnoreCase(guestName))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (guestCountry != null && !guestCountry.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getGuestCountry() != null)
                     .filter(reservation -> reservation.getGuestCountry().equalsIgnoreCase(guestCountry))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (reservationDate != null && !reservationDate.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> reservation.getReservationDate().isEqual(LocalDate.parse(reservationDate, DateTimeFormatter.ISO_DATE)))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (checkInFrom != null && !checkInFrom.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> !reservation.getCheckIn().isBefore(LocalDate.parse(checkInFrom, DateTimeFormatter.ISO_DATE)))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
         if (checkInTo != null && !checkInTo.isEmpty()) {
             reservations = reservations.stream()
                     .filter(reservation -> !reservation.getCheckIn().isAfter(LocalDate.parse(checkInTo, DateTimeFormatter.ISO_DATE)))
-                    .toList();
+                    .collect(Collectors.toList());
         }
 
 
@@ -87,7 +88,7 @@ public interface ReservationRepo extends JpaRepository<Reservation, Long> {
                 .sorted(Comparator
                         .comparing(Reservation::getCheckIn)
                         .thenComparing(Reservation::getId))
-                .toList();
+                .collect(Collectors.toList());
 
         return reservations;
     };

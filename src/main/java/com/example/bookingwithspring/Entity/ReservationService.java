@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -34,7 +35,7 @@ public class ReservationService {
         return reservationRepo.findAll()
                 .stream()
                 .map(reservationToMapper::map)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public Optional<ReservationTo> getReservationById(Long id) {
@@ -47,7 +48,7 @@ public class ReservationService {
                 (apartmentId, checkIn, checkOut, guestName, guestCountry, reservationDate, checkInFrom, checkInTo)
                 .stream()
                 .map(reservationToMapper::map)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public ReservationTo saveReservation(ReservationTo reservationTo) {
