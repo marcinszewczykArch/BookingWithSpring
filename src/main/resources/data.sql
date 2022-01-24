@@ -4,7 +4,7 @@
 INSERT INTO task_manager
     (id, task, frequency_Minutes)
 VALUES
-    (1, 'airbnbReservations', 2);
+    (1, 'airbnbReservations', 30);
 
 --
 --insert people--
